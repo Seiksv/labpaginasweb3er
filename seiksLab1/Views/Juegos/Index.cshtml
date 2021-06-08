@@ -1,0 +1,67 @@
+﻿@model IEnumerable<seiksLab1.Models.Juego>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Insertar", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria.Cat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomJuego)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+            <a href="/juegos/index?order=@ViewBag.order">Ordenar 
+            @if (@ViewBag.order != null && @ViewBag.order == "desc")
+            {
+                @Html.Raw("Ascendente");
+            }
+            else
+            {
+                @Html.Raw("Descendente");
+            }</a>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Existencias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.Cat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomJuego)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Existencias)
+        </td>
+        <td>
+             
+            <img  width="100" height="100" src="/UploadedFiles/@Url.Content(item.Imagen)" alt="Image" />
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

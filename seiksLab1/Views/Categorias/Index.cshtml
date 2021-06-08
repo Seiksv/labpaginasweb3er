@@ -1,0 +1,39 @@
+﻿@model IEnumerable<seiksLab1.Models.Categoria>
+
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Insertar", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Categoria
+        </th>
+        <th>
+            Imagen categoria
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cat)
+        </td>
+        <td>
+            <img width="100" height="100" src= "/UploadedFiles/@Url.Content(item.ImagenCat)" alt="Image" />
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
